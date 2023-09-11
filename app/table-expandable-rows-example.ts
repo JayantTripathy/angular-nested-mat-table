@@ -37,7 +37,7 @@ export class TableExpandableRowsExample {
   @ViewChild('outerSort', { static: true }) sort: MatSort;
   @ViewChildren('innerSort') innerSort: QueryList<MatSort>;
   @ViewChildren('innerTables') innerTables: QueryList<MatTable<Address>>;
-
+  table1: MatTable<Address>;
   dataSource: MatTableDataSource<User>;
   usersData: User[] = [];
   columnsToDisplay = ['name', 'email', 'phone'];
@@ -81,17 +81,18 @@ export class TableExpandableRowsExample {
     );
   }
 
-  // applyFilter(filterValue: string) {
-  //   this.innerTables.forEach(
-  //     (table, index) =>
-  //       ((table.dataSource as MatTableDataSource<Address>).filter = filterValue
-  //         .trim()
-  //         .toLowerCase())
-  //   );
-  // }
+  applyFilter(filterValue: string) {
+    this.innerTables.forEach(
+      (table, index) =>
+        ((table.dataSource as MatTableDataSource<Address>).filter = filterValue
+          .trim()
+          .toLowerCase())
+    );
+  }
   onBillStatusSelection() {
     // let val = this.selectedBillStatus;
     //console.log(this.innerTables);
+
     this.innerTables.forEach(
       (table, index) =>
         ((table.dataSource as MatTableDataSource<Address>).filter =
